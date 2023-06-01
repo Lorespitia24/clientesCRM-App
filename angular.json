@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "clientesCRM-App"
+    }
+  },
+  "defaultProject": "clientesCRM-App",
+  "cli": {
+    "analytics": false
+  }
 }

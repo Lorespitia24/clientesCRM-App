@@ -1,0 +1,42 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">
+        <h3 class="card-title text-primary">Listado de Contactos</h3>
+        <form class="form-inline">
+            
+            <input class="form-control mr-sm-2" type="buscar" placeholder="Buscar" aria-label="Search" id="filtro"
+            #filtroBuscar>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)='getFiltroContacto(filtroBuscar.value)' >Search</button>
+         
+          </form>
+    </div>
+    <div class="card-body text-primary">
+      
+      <div class="my-2 text-left">
+        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">Agregar <img src="/assets/personaAdd.png" width="25" height="25"/></button>
+      </div>
+      <div class="table-responsive">
+
+          <table class="table table-border table-striped overflow-scroll">
+              <tbody *ngIf="clientes?.length>0">
+                  <tr *ngFor="let cliente of clientes">
+                      <td>{{cliente.nombre}}   {{cliente.apellido}} <br> {{cliente.celular}}</td>
+                    <td>
+                        <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.idCliente]" class="btn"><img src="/assets/editar.png" width="20" height="20"/></button>
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/assets/Check.png" width="20" height="20"/>
+                        </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">LLamada telefónica</a>
+                            <a class="dropdown-item" href="#">Mensaje de texto</a>
+                            <a class="dropdown-item" href="#">Llamada por WhatssApp</a>
+                            <a class="dropdown-item" href="#">Mensaje por WhatssApp</a>
+                          </div>
+                        <button type="button" name="eliminar" class="btn " (click)='delete(cliente)'><img src="/assets/eliminar.png" width="20" height="20"/></button>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div>
+</div>

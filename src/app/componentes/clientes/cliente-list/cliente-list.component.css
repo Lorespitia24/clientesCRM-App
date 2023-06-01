@@ -1,0 +1,7 @@
+table{
+    position: relative;
+    width: 100%;
+}
+.table-responsive{
+    max-height: 250px;
+}

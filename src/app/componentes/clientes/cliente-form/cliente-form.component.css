@@ -1,0 +1,10 @@
+.col-sm-6{
+    position: relative;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+}
+
+.btn{
+    margin: 10px;
+}

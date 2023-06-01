@@ -1,0 +1,57 @@
+<div class="card bg-light text-primary">
+    <div class="card-header">
+        <h3 class="text-primary" *ngIf="!cliente.idCliente else elseTitle">{{nuevoContactoTitulo}}</h3>
+        <ng-template #elseTitle>
+            <h3 class="text-primary">{{editarContactoTitulo}}</h3>
+        </ng-template>
+        </div>
+     <div class="card-body">
+         <form>
+             <div class="form-row">
+                 <div class="col-sm-6">
+                     <input type="text" class="form-control" [(ngModel)] ="cliente.nombre" name="nombre" required minlength="4" placeholder="Nombres">
+                 </div>
+                 <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)] ="cliente.apellido" name="apellido" required minlength="4" placeholder="Apellidos">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)] ="cliente.email" name="email" required email  placeholder="E-mail">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)] ="cliente.celular" name="celular" required minlength="10" placeholder="Celular/Telefono">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)] ="cliente.fechaNacimiento" name="fechaNacimiento" required placeholder="Fecha de Nacimiento" onfocus="(this.type='date')" onblur="(this.type='text')">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)] ="cliente.direccion" name="direccion" required minlength="10"  placeholder="Direccion">
+                </div>
+                <div class="col-sm-6">
+                    <select class="custom-select custom-select" [compareWith]="compararObjeto" name="tipoContacto" [(ngModel)] ="cliente.tipoContacto" >
+                        <option [ngValue]="undefined">Tipo Contacto</option>
+                        <option *ngFor="let tipoContacto of tipoContacto" [ngValue]="tipoContacto" >{{tipoContacto}}</option>
+                    </select>
+                    <!-- <input type="text" class="form-control" [(ngModel)] ="cliente.tipoContacto" name="tipoContacto" required minlength="10"  placeholder="Tipo Contacto"> -->
+                </div>
+                <div class="col-sm-6">
+                    <select class="custom-select custom-select" [compareWith]="compararObjeto" name="origen" [(ngModel)] ="cliente.origen">
+                        <option [ngValue]="undefined">Origen</option>
+                        <option *ngFor="let origen of origen" [ngValue]="origen" >{{origen}}</option>
+                    </select>
+                </div>
+
+            
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <button class="btn btn-primary" role="button"  (click) = 'create()' *ngIf="!cliente.idCliente else elseBlock"  >Agregar</button>
+                   <ng-template #elseBlock>
+                       <button class="btn btn-primary" role="button"  (click) = 'update()' >Actualizar</button>
+                   </ng-template>
+                   <button class="btn btn-danger" role="button"  [routerLink]="['/clientes']">Cancelar</button>
+                </div>
+        </div>
+    </form>
+
+    </div> 
+</div>

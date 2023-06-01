@@ -1,0 +1,55 @@
+<div class="card bg-light text-primary">
+    <div class="card-header">
+        <h3 class="text-primary" *ngIf="!tarea.idTarea else elseTitle">{{nuevaTitulo}}</h3>
+        <ng-template #elseTitle>
+            <h3 class="text-primary">{{editarTitulo}}</h3>
+        </ng-template>
+        </div>
+     <div class="card-body">
+          <form>
+             <div class="container">
+                 <div class="row form-group">
+                     <label for="titulo" class="col-form-label">Título de la tarea</label>
+                     <input type="text" class="form-control" [(ngModel)] ="tarea.titulo" name="titulo" required minlength="4" placeholder="Agregar titulo">
+                 </div>
+                 <div class="row form-group">
+                    <label for="cliente" class="col-form-label ">Persona Responsale</label>
+                    <!-- <input type="text" class="form-control" [(ngModel)] ="tarea.cliente" name="cliente" required minlength="4" placeholder="Seleccionar"> -->
+                    <select class="custom-select custom-select" name="cliente" [(ngModel)] ="tarea.cliente" >
+                        <option [ngValue]="undefined">Tipo Contacto</option>
+                        <option *ngFor="let cliente of clientes" [ngValue]="cliente" >{{cliente.nombre}}</option>
+                    </select>
+                </div>
+                <div class="row form-group">
+                    <label for="fechaLimite" class="col-form-label">Fecha Limite</label>
+                    <input type="text" class="form-control" [(ngModel)] ="tarea.fechaLimite" name="fechaLimite" required placeholder="Seleccionar" onfocus="(this.type='date')" onblur="(this.type='text')">
+                </div>
+                <div class="Container"> 
+                    <div clas="row" >
+                        <label for="fechaLimite" class="col-form-label">Resumen del estado de la tarea</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"  [checked]="evento" (click)="onCheckboxChange($event)" type="radio" >
+                        <label class="form-check-label text-dark"  >
+                            Solicitar un resumen del estado de la tarea
+                        </label>
+                    </div>
+                </div>
+            
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <button class="btn btn-primary" role="button"  (click) = 'create()' *ngIf="!tarea.idTarea else elseBlock"  >Agregar</button>
+                   <ng-template #elseBlock>
+                       <button class="btn btn-primary" role="button"  (click) = 'update()' >Actualizar</button>
+                   </ng-template>
+                   <button class="btn btn-danger" role="button"  [routerLink]="['/clientes/tareas/list']">Cancelar</button>
+                </div>
+                <!-- <div class="col"> -->
+                <!-- </div> -->
+                
+        </div>
+    </form> 
+
+    </div> 
+</div>
